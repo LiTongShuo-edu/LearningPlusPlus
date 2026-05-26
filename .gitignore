@@ -1,0 +1,51 @@
+# Build outputs
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+*.cmake.user
+
+# Visual Studio and compiled artifacts
+.vs/
+Debug/
+Release/
+x64/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.user
+*.suo
+*.db
+*.ipch
+*.idb
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.tlog
+*.lastbuildstate
+*.log
+
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Private learning references and local delivery materials
+private/
+third_party_reference/
+deliverables/
+*.task
+
+# Editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

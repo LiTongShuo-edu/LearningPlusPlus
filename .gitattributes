@@ -1,0 +1,6 @@
+* text=auto
+# Keep source snapshots byte-stable after their explicit UTF-8 conversion.
+*.cpp -text
+*.md text eol=lf
+CMakeLists.txt text eol=lf
+.gitignore text eol=lf

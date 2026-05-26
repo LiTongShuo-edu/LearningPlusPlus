@@ -1,0 +1,66 @@
+cmake_minimum_required(VERSION 3.16)
+
+project(LearningPlusPlus LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+function(add_portfolio_example target source)
+    add_executable(${target} ${source})
+    if(MSVC)
+        target_compile_options(${target} PRIVATE /utf-8 /W4 /permissive-)
+    else()
+        target_compile_options(${target} PRIVATE -Wall -Wextra -Wpedantic)
+    endif()
+endfunction()
+
+function(add_caret_example target source safe_name)
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/marked_sources")
+    set(safe_source "${CMAKE_CURRENT_BINARY_DIR}/marked_sources/${safe_name}.cpp")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/${source}" "${safe_source}" COPYONLY)
+    add_portfolio_example(${target} "${safe_source}")
+endfunction()
+
+add_portfolio_example(example_five_pigs "代码案例/案例-五只小猪称体重＊/源.cpp")
+add_portfolio_example(example_reverse_array "代码案例/案例-数组元素逆置＊/源.cpp")
+add_portfolio_example(example_bubble_sort "代码案例/冒泡排序＊/源.cpp")
+add_portfolio_example(example_score_summary "代码案例/案例-考试成绩统计＊/源.cpp")
+add_portfolio_example(example_teacher_students "代码案例/案例-教师与学生信息＊/源.cpp")
+add_portfolio_example(example_hero_sort "代码案例/案例-英雄年龄排序＊/源.cpp")
+add_portfolio_example(example_address_book "代码案例/案例-通讯录管理系统＊/源.cpp")
+add_portfolio_example(example_cube "代码案例/案例-立方体类＊/源.cpp")
+add_portfolio_example(example_point_circle "代码案例/案例-点和圆的关系＊/源.cpp")
+add_portfolio_example(example_calculator "代码案例/案例-多态计算器＊/源.cpp")
+add_portfolio_example(example_beverage "代码案例/案例-制作饮品＊/源.cpp")
+add_portfolio_example(example_computer "代码案例/案例-电脑组装＊/源.cpp")
+add_portfolio_example(example_worker_manager "代码案例/案例-职工管理系统＊/源.cpp")
+
+# In Windows command lines, ^ is an escape character. Keep the public names
+# and compile temporary build copies with safe paths.
+add_caret_example(example_pointers_references "代码案例/指针与引用^/源.cpp" pointers_references)
+add_caret_example(example_memory_management "代码案例/内存管理^/源.cpp" memory_management)
+add_caret_example(example_test_summary "代码案例/案例-测试结果统计^/源.cpp" test_summary)
+
+include(CTest)
+if(BUILD_TESTING)
+    add_test(NAME five_pigs_runs COMMAND example_five_pigs)
+    add_test(NAME reverse_array_runs COMMAND example_reverse_array)
+    add_test(NAME bubble_sort_runs COMMAND example_bubble_sort)
+    add_test(NAME score_summary_runs COMMAND example_score_summary)
+    add_test(NAME teacher_students_runs COMMAND example_teacher_students)
+    add_test(NAME hero_sort_runs COMMAND example_hero_sort)
+    add_test(NAME address_book_demo_runs COMMAND example_address_book --demo)
+    add_test(NAME cube_runs COMMAND example_cube)
+    add_test(NAME point_circle_runs COMMAND example_point_circle)
+    add_test(NAME calculator_runs COMMAND example_calculator)
+    add_test(NAME beverage_runs COMMAND example_beverage)
+    add_test(NAME computer_runs COMMAND example_computer)
+    add_test(
+        NAME worker_manager_demo_runs
+        COMMAND example_worker_manager --demo "${CMAKE_CURRENT_BINARY_DIR}/worker_records_demo.txt"
+    )
+    add_test(NAME pointers_references_runs COMMAND example_pointers_references)
+    add_test(NAME memory_management_runs COMMAND example_memory_management)
+    add_test(NAME test_summary_runs COMMAND example_test_summary)
+endif()
