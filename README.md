@@ -1,5 +1,7 @@
 # LearningPlusPlus
 
+[![CMake Verification](https://github.com/LiTongShuo-edu/LearningPlusPlus/actions/workflows/cmake.yml/badge.svg)](https://github.com/LiTongShuo-edu/LearningPlusPlus/actions/workflows/cmake.yml)
+
 这是一个 C++ 基础学习作品集，用于展示个人学习过程、丢失练习的复现代码，以及与测试开发岗位相关的扩展示例。代码统一放在 [`代码案例/`](./代码案例/) 中，目录名称直接标明来源，避免将保留的早期手写练习、丢失后复现的练习和岗位扩展示例混为一谈。
 
 ## 代码来源背景
@@ -31,6 +33,7 @@
 
 - [`docs/学习路线与知识点.md`](./docs/学习路线与知识点.md)：源码与知识点映射。
 - [`docs/调试与验证说明.md`](./docs/调试与验证说明.md)：构建、运行和验证记录。
+- [`docs/AI协作开发记录.md`](./docs/AI协作开发记录.md)：AI 辅助开发的任务拆解、迭代案例和验收边界。
 - [`docs/手写旧作编译记录.md`](./docs/手写旧作编译记录.md)：34 份早期源码的客观编译结果。
 - [`docs/参考边界与原创声明.md`](./docs/参考边界与原创声明.md)：公开发布的版权与来源边界。
 
@@ -50,6 +53,8 @@ ctest --test-dir build -C Debug --output-on-failure
 ```
 
 在 Windows 命令行中，字符 `^` 具有转义含义。为保留公开目录中的来源标识，CMake 会在构建目录生成三个仅用于编译的安全路径副本；公开源文件仍以 `^` 结尾目录为准。
+
+仓库配置了 GitHub Actions，在向 `main` 推送或发起 Pull Request 时，自动在 Windows / MSVC 环境执行上述 CMake 构建与 CTest 验证步骤。
 
 ## 已完成验证
 
