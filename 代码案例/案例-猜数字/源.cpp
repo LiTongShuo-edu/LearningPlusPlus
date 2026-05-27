@@ -20,8 +20,8 @@ int main()
 				else if (i1<i2)
 			{
 				cout << "您输入的数偏大" << endl;
-			}		
-
+			}
+		}
 
 
 	return 0;
